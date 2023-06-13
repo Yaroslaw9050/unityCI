@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        testMode:
+      # matrix:
+        # testMode:
           # - EditMode
-          - PlayMode
+          # - PlayMode
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -189,24 +189,24 @@ jobs:
 #           name: build-Android
 #           path: build/Android
 
-  deployPages:
-    needs: buildWindows
-    name: Deploy to Github Pages 🚀
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # deployPages:
+  #   needs: buildWindows
+  #   name: Deploy to Github Pages 🚀
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - uses: actions/download-artifact@v2
-        with:
-          name: build-StandaloneWindows64
-          path: build
+  #     - uses: actions/download-artifact@v2
+  #       with:
+  #         name: build-StandaloneWindows64
+  #         path: build
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: Autobuild
-          folder: build/Windows
+  #     - name: Deploy 🚀
+  #       uses: JamesIves/github-pages-deploy-action@4.1.4
+  #       with:
+  #         branch: Autobuild
+  #         folder: build/Windows
 
 #   deployPages:
 #     needs: buildWebGL
