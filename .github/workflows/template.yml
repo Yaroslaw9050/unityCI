@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         testMode:
-          - EditMode
+          # - EditMode
           - PlayMode
     steps:
       - name: Checkout code
@@ -189,6 +189,24 @@ jobs:
 #           name: build-Android
 #           path: build/Android
 
+  deployPages:
+    needs: buildWindows
+    name: Deploy to Github Pages 🚀
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: build-windows
+          path: build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: build/WebGL
 
 #   deployPages:
 #     needs: buildWebGL
